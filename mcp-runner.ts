@@ -1,3 +1,4 @@
+import path from 'path';
 import fs from 'fs/promises';
 import { spawn } from 'child_process';
 import axios from 'axios';
@@ -8,7 +9,7 @@ async function main() {
   //   stdio: 'inherit'
   // });
 
-  const path = require('path');
+  // const path = require('path');
   const mcpPath = path.resolve(
   'node_modules',
   '.bin',
