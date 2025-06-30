@@ -1,0 +1,3 @@
+Login to the https://www.saucedemo.com/ and test the positive login flow
+Login to the https://www.saucedemo.com/ and test the negative login flow
+After successful login, verify you are in the landing page

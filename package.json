@@ -1,0 +1,20 @@
+{
+  "name": "saucedemo-mcp",
+  "version": "1.0.0",
+  "type": "module",
+  "scripts": {
+    "test": "npx playwright test",
+    "type-check": "tsc --noEmit",
+    "mcp": "ts-node mcp-runner.ts"
+  },
+  "dependencies": {
+    "axios": "^1.10.0"
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.44.0",
+    "@types/axios": "^0.9.36",
+    "@types/node": "^20.11.30",
+    "ts-node": "^10.9.1",
+    "typescript": "^5.4.0"
+  }
+}

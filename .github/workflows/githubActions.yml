@@ -1,0 +1,41 @@
+name: Playwright MCP CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v3
+
+      - uses: actions/setup-node@v4
+        with: 
+          node-version: 18
+
+      - name: Install deps
+        run: npm ci
+
+      - name: Install axios
+        run: npm install axios
+
+      - name: Install Playwright browsers
+        run: npx playwright install --with-deps
+
+      - name: Install ts-node and TypeScript
+        run: npm install --save-dev ts-node typescript
+
+      - name: Run MCP-driven Claude automation
+        run: npx ts-node mcp-runner.ts
+        continue-on-error: false
+
+      - name: Upload logs on failure
+        if: failure()
+        uses: actions/upload-artifact@v3
+        with:
+          name: mcp-claude-logs
+          path: logs/
