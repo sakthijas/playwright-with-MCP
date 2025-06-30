@@ -4,11 +4,22 @@ import axios from 'axios';
 
 async function main() {
   const prompts = await fs.readFile('prompts.txt', 'utf-8');
-  const mcp = spawn('npx', ['@executeautomation/playwright-mcp-server', '--http', '--port', '6270'], {
-    stdio: 'inherit'
-  });
+  // const mcp = spawn('npx', ['@executeautomation/playwright-mcp-server', '--http', '--port', '6270'], {
+  //   stdio: 'inherit'
+  // });
 
-  await new Promise(r => setTimeout(r, 5000));
+  const path = require('path');
+  const mcpPath = path.resolve(
+  'node_modules',
+  '.bin',
+  process.platform === 'win32' ? 'playwright-mcp-server.cmd' : 'playwright-mcp-server'
+);
+
+const mcp = spawn(mcpPath, ['--http', '--port', '6270'], {
+  stdio: 'inherit'
+});
+
+  await new Promise(r => setTimeout(r, 10000));
 
   const outcomes = [];
 
