@@ -7,7 +7,7 @@ export default defineConfig({
   use: {
     headless: true,
     screenshot: 'only-on-failure',
-    video: 'retain-on-failure'
+    video: 'on'
   },
   reporter: [['html', { outputFolder: 'playwright-report' }]]
 });

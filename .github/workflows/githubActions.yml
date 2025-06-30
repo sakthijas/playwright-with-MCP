@@ -30,8 +30,15 @@ jobs:
         run: npm install --save-dev ts-node typescript
 
       - name: Run MCP-driven Claude automation
-        run: npx ts-node mcp-runner.ts
+        run: node --loader ts-node/esm mcp-runner.ts
         continue-on-error: false
+
+      - name: Upload Playwright videos
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: playwright-videos
+          path: test-results/**/video/*.webm
 
       - name: Upload logs on failure
         uses: actions/upload-artifact@v4
